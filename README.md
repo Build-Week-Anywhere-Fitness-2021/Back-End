@@ -9,7 +9,5 @@ https://af-backend-t.herokuapp.com/
 ## Auth Endpoints
 Method | Endpoint | Requires | Returns
 --- | --- | --- | ---
-POST | /api/auth/register | name, email, username, password, role | Newly created user with
-auto-generated userId
-POST | /api/auth/login | username, password | Logged in user data and
-JWT token for authorization
+POST | /api/auth/register | name, email, username, password, role | Newly created user with auto-generated userId
+POST | /api/auth/login | username, password | Logged in user data and JWT token for authorization
