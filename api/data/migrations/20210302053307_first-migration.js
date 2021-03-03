@@ -19,6 +19,7 @@ exports.up = async (knex) => {
       classes.string('location', 50).notNullable();
       classes.integer('current-attendees').notNullable().unsigned();
       classes.integer('max-class-size').notNullable().unsigned();
+      classes.string('date', 128).notNullable();
     })
     .createTable('instructor', (instructor) => {
       instructor.increments('instructor_id');
