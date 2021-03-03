@@ -52,7 +52,7 @@ router.post('/login', (req, res) => {
 
 function generateToken(user) {
     const payload = {
-        subject: user.userId,
+        subject: user.user_id,
         username: user.username,
         role: user.role
     };
