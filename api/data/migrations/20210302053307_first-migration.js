@@ -13,12 +13,12 @@ exports.up = async (knex) => {
       classes.increments();
       classes.string('name', 100).notNullable();
       classes.string('type', 50).notNullable();
-      classes.string('start-time', 50).notNullable();
+      classes.string('startTime', 50).notNullable();
       classes.string('duration', 50).notNullable();
-      classes.string('intensity', 50).notNullable();
+      classes.string('intensityLevel', 50).notNullable();
       classes.string('location', 50).notNullable();
-      classes.integer('current-attendees').notNullable().unsigned();
-      classes.integer('max-class-size').notNullable().unsigned();
+      classes.integer('registered').notNullable().unsigned();
+      classes.integer('maxRegistered').notNullable().unsigned();
       classes.string('date', 128).notNullable();
     })
     .createTable('instructor', (instructor) => {
