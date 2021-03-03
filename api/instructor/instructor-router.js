@@ -53,12 +53,16 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const {id} = req.params;
   Classes.removeClass(id)
-      .then(deleted => {
-          res.json({removed: deleted});
-      })
-      .catch(err => {
-          res.status(500).json({message: 'Classes must not have enrolled users before deletion' });
-      });
+  .then(cls => {
+    if (cls) {
+      res.status(200).json({data: cls, message: 'class deleted'});
+    } else {
+      res.status(404).json({error: 'please provide correct id'});
+    }
+  })
+  .catch(err => {
+    res.status(500).json({message: 'Error deleting class', err: err.message});
+  });
 });
 
 router.get('/:id', (req, res) => {

@@ -6,14 +6,14 @@ const Classes = require("../instructor/instructor-model");
 const tara = { username: "tara", email: "email@email.com", password: "123", role: "instructor" };
 const newClass = {
     name: "HIIT",
-    instructor_name: "Chloe",
     type: "Aerobic",
-    time: "10:00 AM",
+    startTime: "10:00 AM",
     duration: "1 Hour",
-    intensity: "High",
+    intensityLevel: "High",
     location: "Los Angeles, CA",
-    attendees: 5,
-    max_size: 15
+    registered: 5,
+    maxRegistered: 15,
+    date: "03-13-2020"
 };
 
 beforeAll(async () => {
@@ -63,7 +63,8 @@ describe("DELETE deletes class", () => {
         await request(server).post("/api/auth/register").send(tara);
         let res = await request(server).post("/api/auth/login").send(tara);
         const token = res.body.token;
-        let body = await request(server).delete("/api/classes/1",).set("Authorization", token);
-        expect(JSON.stringify(body)).toEqual(expect.stringMatching(/removed/i));
+        let body = await request(server).post("/api/classes/",).set("Authorization", token).send(newClass);
+        expect(body.status).toBe(200);
+        expect(body.body).toMatchObject({message: 'class deleted'});
     });
 });
