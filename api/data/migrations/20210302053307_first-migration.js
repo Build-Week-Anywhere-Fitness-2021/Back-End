@@ -23,14 +23,14 @@ exports.up = async (knex) => {
     })
     .createTable('user_classes', tbl => {
       tbl.increments();
-      tbl.integer('user_id').notNullable().references('userId').inTable('users').onDelete('CASCADE').onUpdate('CASCADE');
-      tbl.integer('class_id').notNullable().references('classId').inTable('classes').onDelete('CASCADE').onUpdate('CASCADE');
+      tbl.integer('user_id').notNullable().references('userId').inTable('users');
+      tbl.integer('class_id').notNullable().references('classId').inTable('classes');
     });
 };
 
 exports.down = function (knex) {
   return knex.schema
     .dropTableIfExists('user_classes')
-    .dropTableIfExists('users')
-    .dropTableIfExists('classes');
+    .dropTableIfExists('classes')
+    .dropTableIfExists('users');
 };

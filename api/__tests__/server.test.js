@@ -6,8 +6,8 @@ beforeAll(async () => {
   await db.migrate.rollback();
   await db.migrate.latest();
 });
-beforeEach(async () => {
-  await db.seed.run();
+beforeEach(async ()=>{
+  await db('classes').truncate();
 });
 afterAll(async (done) => {
   await db.destroy();
