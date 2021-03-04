@@ -31,5 +31,8 @@ function removeClass(id) {
 }
 
 function getClassById(id) {
-  return db("class").where({id}).first();
+  return db('class as c')
+    .select('*')
+    .where('c.classId', id)
+    .first();
 }
