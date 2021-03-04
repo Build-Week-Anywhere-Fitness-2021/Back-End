@@ -4,7 +4,7 @@ const restricted = require('../middleware/restricted-middleware');
 const {valUserId} = require('../middleware/idValidation');
 
 router.get('/', restricted, (req, res) => {
-  Users.find()
+  Users.getUsers()
     .then(user => {
       res.status(200).json({ user });
     })
