@@ -63,7 +63,7 @@ describe("DELETE deletes class", () => {
         await request(server).post("/api/auth/register").send(tara);
         let res = await request(server).post("/api/auth/login").send(tara);
         const token = res.body.token;
-        let body = await request(server).post("/api/classes/",).set("Authorization", token).send(newClass);
+        let body = await request(server).post("/api/instructor/1",).set("Authorization", token).send(newClass);
         expect(body.status).toBe(200);
         expect(body.body).toMatchObject({message: 'class deleted'});
     });
