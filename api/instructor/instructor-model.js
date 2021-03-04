@@ -10,12 +10,12 @@ module.exports = {
 };
 
 async function addClass(newClass) {
-    const [id] = await db("classes").insert(newClass, "class_id");
+    const [id] = await db("class").insert(newClass, "classId");
     return getClassById(id);
 }
 
 function getClasses() {
-  return db.select("*").from("classes");
+  return db.select("*").from("class");
 }
 
 function getUsers() {
@@ -23,13 +23,13 @@ function getUsers() {
 }
 
 function updateClass(id, changes) {
-  return db("classes").where({id}).update(changes);
+  return db("class").where({id}).update(changes);
 }
 
 function removeClass(id) {
-  return db("classes").where("id", id).del();
+  return db("class").where("classId", id).del();
 }
 
 function getClassById(id) {
-  return db("classes").where({id}).first();
+  return db("class").where({id}).first();
 }

@@ -12,7 +12,7 @@ router.post('/register', (req, res) => {
         const rounds = process.env.BCRYPT_ROUNDS || 10;
         const hash = bcryptjs.hashSync(credentials.password, rounds);
         credentials.password = hash;
-        Users.add(credentials)
+        Users.addUser(credentials)
             .then(user => {
                 res.status(201).json({data: user, message: 'Registration was successful!'});
             })
@@ -52,7 +52,7 @@ router.post('/login', (req, res) => {
 
 function generateToken(user) {
     const payload = {
-        subject: user.user_id,
+        subject: user.userId,
         username: user.username,
         role: user.role
     };
